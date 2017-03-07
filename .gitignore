@@ -1,0 +1,5 @@
+*~
+.ipynb_checkpoints/
+creds.yml
+Tweet-Data
+saved_pickles
