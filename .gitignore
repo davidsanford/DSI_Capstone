@@ -3,3 +3,4 @@
 creds.yml
 Tweet-Data
 saved_pickles
+lib/*.pyc
