@@ -1,0 +1,97 @@
+\documentclass[aspectratio=169]{beamer}
+%\documentclass[handout]{beamer}
+
+\input{Style.tex}
+
+%\setbeamertemplate{itemize subitem}[square]
+%\setbeamercolor{itemize subitem}{fg=red!100}
+%\setbeamertemplate{itemize subsubitem}[circle]
+
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\setlength{\fboxrule}{1pt}
+\newcounter{Timestamps}
+%\setcounter{Timestamps}{1}
+
+\newcommand{\timestamp}[1] {\ifthenelse{\value{Timestamps} =
+    1}{\alert{(#1 min)}}{}}
+\newcommand{\reference}[1]{{\hfill \tiny \textcolor{gray}{#1}}}
+
+\newcommand{\mweak}{m_W}
+\newcommand{\mgut}{m_{\text{GUT}}}
+\newcommand{\gev}{\text{GeV}}
+\newcommand{\tev}{\text{TeV}}
+\newcommand{\phiCP}{\phi_{\text{CP}}}
+\newcommand{\mhu}{m_{H_u}}
+\newcommand{\mhd}{m_{H_d}}
+\newcommand{\mtl}{m_{Q_3}}
+\newcommand{\mtr}{m_{\bar{U}_3}}
+\newcommand{\at}{A_t}
+\newcommand{\atgut}{\at (\mgut)}
+\newcommand{\atweak}{\at (\mweak)}
+\newcommand{\atsqgut}{\at^2 (\mgut)}
+\newcommand{\atsqweak}{\at^2 (\mweak)}
+\newcommand{\ab}{A_b}
+\newcommand{\cmax}{c_{\text{max}}}
+\newcommand{\mmix}{\mathcal{A}_{\tilde{t}}}
+
+\title{Content Modeling of Tweets on Twitter}
+
+\author{David Sanford}
+
+\institute{Data Science Immersive\\ General Assembly}
+
+\date{Thursday March 9, 2017}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Enter the Cacophony}
+  \begin{itemize}
+  \item<alert@1> Twitter contains an enormous amount of data
+  \item<2-|alert@2> But the breadth of topics makes an unfiltered
+    stream meaningless noise
+  \end{itemize}
+
+  
+  \begin{center}
+    \uncover<3->{ \textcolor{blue}{How can tweets related to a
+        particular subject be tagged?} }
+  \end{center}
+
+  \uncover<4-> {
+    \begin{itemize}
+    \item Keyword/user/location filtering can reduce the stream
+      somewhat
+      \begin{itemize}
+      \item Requires meaningfully restrictive keywords
+      \item Useful for sample sets, but will cut away a large amount
+        of useful data
+      \end{itemize}
+    \item Better methodology can be applied
+    \end{itemize}
+  }
+
+  \begin{center}
+    \uncover<5->{ \textcolor{green}{} }
+  \end{center}
+
+  
+\end{frame}
+
+
+\end{document}
+
+
