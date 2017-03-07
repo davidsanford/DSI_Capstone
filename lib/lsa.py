@@ -2,8 +2,9 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 
-def lsa_pipeline(tweets_df, max_df = 0.25, min_df = 2, num_components = 100):
-    vectorizer = TfidfVectorizer(decode_error="replace", stop_words="english",
+def lsa_pipeline(tweets_df, max_df = 0.25, min_df = 2, num_components = 100,
+                 stop_words = "engilsh"):
+    vectorizer = TfidfVectorizer(decode_error="replace", stop_words=stop_words,
                                  max_df = max_df, min_df = min_df,
                                  binary = False)
     
