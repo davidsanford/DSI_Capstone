@@ -18,14 +18,18 @@ def emoji_replacement(tweet, remove = False):
     return tweet
 
 def retweet_check(tweet):
-    return len(re.findall(u'^RT @[\w_]+:', tweet)) > 0
+    return len(re.findall(u'^RT @[\w_]+:', tweet) + \
+               re.findall(u'^RT @[\w_]+:', tweet)) > 0
 
 def retweet_replacement(tweet, remove = False):
     replacement_string = ' retweet_marker '
     if remove is True:
         replacement_string = ' '
-        
-    return re.sub(u'^RT @[\w_]+:', replacement_string, tweet)
+
+    tweet = re.sub(u'^RT @[\w_]+:', replacement_string, tweet)
+    tweet = re.sub(u'^rt @[\w_]+:', replacement_string, tweet)
+    
+    return tweet
 
 def hashtags(tweet):
     return " ".join(re.findall(u'#[\w_]+', tweet))
