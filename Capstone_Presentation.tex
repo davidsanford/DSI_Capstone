@@ -1,5 +1,5 @@
-%\documentclass[aspectratio=169]{beamer}
-\documentclass[aspectratio=169,handout]{beamer}
+\documentclass[aspectratio=1610]{beamer}
+%\documentclass[aspectratio=1610,handout]{beamer}
 
 \input{Style.tex}
 
@@ -272,16 +272,18 @@
   \end{center}
 
   \begin{multicols}{2}
-  \begin{itemize}
-  \item \textcolor{red}{Retweet references}
-  \item \textcolor{green}{Hashtags}
-  \item User references
-  \item Emojis
-  \item \textcolor{blue}{Links}
-  \item \textcolor{violet}{Keywords}
-  \item Proper names
-  \item \textcolor{gold}{Garbage strings}
-  \end{itemize}
+    \begin{itemize}
+    \item \only<1>{Retweet references}
+      \only<2->{\textcolor{red}{Retweet references}}
+    \item \only<1>{ Hashtags} \only<2->{\textcolor{green}{Hashtags}}
+    \item User references
+    \item Emojis
+    \item \only<1>{Links} \only<2->{\textcolor{blue}{Links}}
+    \item \only<1>{Keywords} \only<2->{\textcolor{violet}{Keywords}}
+    \item Proper names
+    \item \only<1>{Unintelligible strings}
+      \only<2->{\textcolor{gold}{Unintelligible strings}}
+    \end{itemize}
   \end{multicols}
  
   \uncover<2->{
@@ -334,10 +336,12 @@
   \includegraphics[width=0.55\textwidth]{variation.pdf}
   \end{multicols}
 
-  \begin{center}
-    \textcolor{red}{(770, 850) empty tweet vectors after tfidf for
-      (training, validation) sets}
-  \end{center}
+  \uncover<2->{
+    \begin{center}
+      \textcolor{red}{(770, 850) empty tweet vectors after tfidf for
+        (training, validation) sets ($\sim$4\%)}
+    \end{center}
+  }
  
 \end{frame}
 
@@ -350,23 +354,24 @@
   \item 30\% of training samples set aside for testing
   \end{itemize}
 
-
-  \begin{center}
-    \begin{tabular}{|l|l|l|}
-      \hline
-      Estimator & Train Accuracy & Test Accuracy \\
-      \hline
-      K-Nearest Neighbors & 0.783333 & 0.792444 \\
-      Logistic Regression & 0.774190 & 0.781444 \\
-      SVC & 0.822619 & 0.832889 \\
-      Decision Tree & 0.744524 & 0.751778 \\
-      Random Forest & 0.783048 & 0.792778 \\
-      Extra Trees & 0.790571 & 0.794000 \\
-      \hline
-    \end{tabular}
-  \end{center}
-
   \uncover<2->{
+    \begin{center}
+      \begin{tabular}{|l|l|l|}
+        \hline
+        Estimator & Train Accuracy & Test Accuracy \\
+        \hline
+        K-Nearest Neighbors & 0.783333 & 0.792444 \\
+        Logistic Regression & 0.774190 & 0.781444 \\
+        SVC & 0.822619 & 0.832889 \\
+        Decision Tree & 0.744524 & 0.751778 \\
+        Random Forest & 0.783048 & 0.792778 \\
+        Extra Trees & 0.790571 & 0.794000 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  }
+
+  \uncover<3->{
     \begin{itemize}
       \item SVC used for other statistics on validation set
     \end{itemize}
@@ -483,7 +488,14 @@
     \end{tabular}
 
   \end{multicols}
-  \vspace*{0.5cm}
+
+  \uncover<2->{
+    \begin{center}
+      \textcolor{orange}{Some coherent method of aggregating tweets may
+        result in significant improvements}
+    \end{center}
+  }
+%  \vspace*{0.5cm}
 \end{frame}
 
 
