@@ -1,0 +1,192 @@
+\documentclass[aspectratio=169]{beamer}
+%\documentclass[aspectratio=1610,handout]{beamer}
+
+\input{Style.tex}
+
+%\setbeamertemplate{itemize subitem}[square]
+%\setbeamercolor{itemize subitem}{fg=red!100}
+%\setbeamertemplate{itemize subsubitem}[circle]
+
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\setlength{\fboxrule}{1pt}
+\newcounter{Timestamps}
+%\setcounter{Timestamps}{1}
+
+\newcommand{\timestamp}[1] {\ifthenelse{\value{Timestamps} =
+    1}{\alert{(#1 min)}}{}}
+\newcommand{\reference}[1]{{\hfill \tiny \textcolor{gray}{#1}}}
+
+\newcommand{\mweak}{m_W}
+\newcommand{\mgut}{m_{\text{GUT}}}
+\newcommand{\gev}{\text{GeV}}
+\newcommand{\tev}{\text{TeV}}
+\newcommand{\phiCP}{\phi_{\text{CP}}}
+\newcommand{\mhu}{m_{H_u}}
+\newcommand{\mhd}{m_{H_d}}
+\newcommand{\mtl}{m_{Q_3}}
+\newcommand{\mtr}{m_{\bar{U}_3}}
+\newcommand{\at}{A_t}
+\newcommand{\atgut}{\at (\mgut)}
+\newcommand{\atweak}{\at (\mweak)}
+\newcommand{\atsqgut}{\at^2 (\mgut)}
+\newcommand{\atsqweak}{\at^2 (\mweak)}
+\newcommand{\ab}{A_b}
+\newcommand{\cmax}{c_{\text{max}}}
+\newcommand{\mmix}{\mathcal{A}_{\tilde{t}}}
+
+\definecolor{gold}{RGB}{200, 150, 0}
+
+\title{Tweet Classification}
+
+\author{David Sanford}
+
+\institute{Data Science Immersive\\ General Assembly}
+
+\date{Wednesday April 5, 2017}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Enter the Cacophony}
+
+  \begin{center}
+    \textcolor{blue}{\bf Twitter contains an enormous amount of,
+      mostly unfiltered, data}
+  \end{center}
+
+  \begin{itemize}
+  \item Keyword/user/location filtering is somewhat effective
+  \item Many subject-related tweets will not contain keywords
+  \item Some keywords have more general context than desired
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{violet}{\bf Tweet content beyond keywords may
+      indicated subject relevance}
+  \end{center}
+
+  \begin{itemize}
+  \item Able to select around mis-spellings and abbreviations
+  \item Captures related words and/or terminology beyond the scope
+    of keyword searches
+  \item Captures sets of relevant and/or iconic words
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{orange}{\bf NLP and Machine Learning can attempt to
+      identify these features}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{It's a me!  Mario! -- And Friends}
+  \begin{center}
+    \textcolor{teal}{\bf Wish to classify tweets with video game
+      franchise names as keywords}
+  \end{center}
+
+  \begin{itemize}
+    \item Producing a clean sample requires both sufficient volume and
+      unique keywords
+    \item Gathered $\sim 200,000$ tweets, divided evenly between
+      keyworded and an unfiltered stream
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{red}{\bf Tweets are best suited to ``bag-of-words''
+      style models}
+  \end{center}
+
+  \begin{itemize}
+  \item Mis-spellings, abbreviations, lack of grammar, and emojis
+    are common
+  \item N-grams and other models are more computationally expensive
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{green}{\bf Tweets are messy! A significant amount of cleaning
+      is required}
+  \end{center}
+
+  \begin{tabular}{|p{6cm}|p{6cm}|}
+    \hline {\small \textcolor{red}{RT}  \textcolor{gold}{@ForceComYT:}
+      \textcolor{green}{\#Overwatch} - Deutsch / German Let's Play -
+      \textcolor{gold}{S03} - \textcolor{green}{\#Competitive} Placement
+      Match \textcolor{green}{\#07} -
+      \textcolor{blue}{https://t.co/PVp3YzYQBf}
+      \textcolor{green}{\#LetsPlay}} & {\small - deutsch / german let's play
+      - - placement match -} \\ \hline
+  \end{tabular}
+
+\end{frame}
+
+
+
+\begin{frame}{Modeling Results}
+  \begin{center}
+    \textcolor{blue}{\bf Initial Data Set -- 10K tweets from video game
+      and unfiltered streams}
+  \end{center}
+
+  \begin{itemize}
+  \item Convert words to numerical inputs using a ``tf-idf''
+    vectorizer model + ``truncated~svd''
+
+    \begin{itemize}
+    \item tf-idf weighs words based on frequency in tweet and corpus
+    \item truncated svd selects the most important combinations of
+      features
+    \end{itemize}
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{gold}{\bf Binary classification performed using six models,
+      with similar performance}
+  \end{center}
+
+  \begin{center}
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      Model & Accuracy & Precision & Recall & F1-Score \\
+      \hline
+      SVC & 0.76 & 0.90 & 0.60 & 0.72 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  \begin{center}
+    \textcolor{green}{\bf Performance probably requires more cleaning and
+      curation}
+  \end{center}
+
+  \begin{itemize}
+  \item Probably useful as a ``signal boosting'' intermediate filter
+  \item Needs more computational power and processing for better results
+  \end{itemize}
+
+  \begin{center}
+    \textcolor{violet}{\large \bf Future goal: content modeling on tweets}
+  \end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
