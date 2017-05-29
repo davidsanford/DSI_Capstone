@@ -1,6 +1,6 @@
 # Tweet Classification
 
-General Assembly Data Science Immersime Capstone Project
+General Assembly Data Science Immersive Capstone Project
 
 This capstone project deals with the extraction of topic-related
 tweets on twitter through binary classification of topic-related
